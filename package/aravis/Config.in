@@ -1,0 +1,8 @@
+config BR2_PACKAGE_ARAVIS
+	bool "libaravis"
+	select BR2_PACKAGE_LIBXML2
+	depends BR2_PACKAGE_LIBGLIB2
+	help
+	  The Aravis Libary supports GiGE Vision Cameras.
+	  
+	  https://github.com/AravisProject/aravis
