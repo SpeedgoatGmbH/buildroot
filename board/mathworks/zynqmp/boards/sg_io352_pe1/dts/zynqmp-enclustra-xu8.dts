@@ -65,7 +65,7 @@
 	mdio {
 		compatible = "cdns,macb-mdio";
 		reg = <0x0 0xff0b0000 0x0 0x1000>;
-		clocks =  <&clk 45>, <&clk 45>, <&clk 49>;
+		clocks =  <&clkc 45>, <&clkc 45>, <&clkc 49>;
 		clock-names = "pclk", "tx_clk", "hclk";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -106,9 +106,10 @@
 	status = "okay";
 };
 
-&fclk1 {
+/*We took this out of our design!*/
+/*&fclk1 {
 	status = "okay";
-};
+};*/
 
 &dcc {
 	status = "okay";
