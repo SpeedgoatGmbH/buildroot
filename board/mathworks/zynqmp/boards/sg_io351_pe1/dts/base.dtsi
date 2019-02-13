@@ -1,4 +1,4 @@
-#include "zynqmp-enclustra-xu8.dts"
+#include "zynqmp-enclustra-xu5.dts"
 
 / {
 	chosen {
