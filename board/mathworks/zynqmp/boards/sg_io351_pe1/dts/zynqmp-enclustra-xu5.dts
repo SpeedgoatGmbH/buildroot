@@ -170,16 +170,22 @@
 	pinctrl-0 = <&pinctrl_gem0_default>;
 };
 
-/*
 &gem1 {
-	status = "okay";
+	status = "disabled";
 	local-mac-address = [00 0a 35 00 02 91];
-	phy = <&phy1>;
+	/*phy = <&phy1>;
 	phy-mode = "gmii-id";
-	phy-handle = <&phy1>;
+	phy-handle = <&phy1>;*/
 	pinctrl-names = "default";
 };
-*/
+
+&gem2 {
+	status = "disabled";
+};
+
+&gem3 {
+	status = "disabled";
+};
 
 &gpio {
 	status = "okay";
