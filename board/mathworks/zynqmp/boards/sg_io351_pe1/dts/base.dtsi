@@ -2,9 +2,10 @@
 
 / {
 	chosen {
-		bootargs = "earlycon root=/dev/ram rw";
+		bootargs = "earlyprintk earlycon root=/dev/ram rw console=ttyPS0,115200";
 	};
 };
+
 #include "zynqmp-mw-fpga-bridge-common.dtsi"
 #include "zynqmp-mw-common.dtsi"
 #include "mw-aximm-common.dtsi"

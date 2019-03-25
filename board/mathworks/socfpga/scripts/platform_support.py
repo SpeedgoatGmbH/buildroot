@@ -220,7 +220,7 @@ def platform_gen_target(args, catalog):
 def platform_update_catalog(catalog):
     catalog['platformInfo']['kernelDTSDir'] = [
                 'arch/arm/boot/dts',
-                'arch/arm/boot/dts/include']
+                'include']
     return
 
 ####################################

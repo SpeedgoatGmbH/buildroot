@@ -26,7 +26,7 @@
 		reg = <0x77600000 0x1000>;
 		dmas = <&dmac_s 1 &dmac_s 2>;
 		dma-names = "tx", "rx";
-		clocks = <&clkc 15>, <&audio_clock>;
+		clocks = <&zynqmp_clk 15>, <&audio_clock>;
 		clock-names = "axi", "ref";
 	};
 

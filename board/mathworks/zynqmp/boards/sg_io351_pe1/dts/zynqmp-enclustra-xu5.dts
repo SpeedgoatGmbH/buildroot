@@ -38,7 +38,7 @@
 	};
 
 	chosen {
-		bootargs = "earlycon";
+		bootargs = "earlyprintk earlycon console=ttyPS0,115200";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -50,7 +50,7 @@
 	mdio0 {
 		compatible = "cdns,macb-mdio";
 		reg = <0x0 0xff0b0000 0x0 0x1000>;
-		clocks =  <&clkc 45>, <&clkc 45>, <&clkc 49>;
+		clocks =  <&clk 45>, <&clk 45>, <&clk 49>;
 		clock-names = "pclk", "tx_clk", "hclk";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -75,11 +75,10 @@
 		};
 	};
 
-/*
 	mdio1 {
 		compatible = "cdns,macb-mdio";
 		reg = <0x0 0xff0c0000 0x0 0x1000>;
-		clocks =  <&clkc 45>, <&clkc 45>, <&clkc 49>;
+		clocks =  <&clk 45>, <&clk 45>, <&clk 49>;
 		clock-names = "pclk", "tx_clk", "hclk";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -102,17 +101,12 @@
 			rxd2-skew-ps = <0>;
 			rxd3-skew-ps = <0>;
 		};
-	};*/
+	};
 };
 
 &fclk0 {
 	status = "okay";
 };
-
-/*We took this out of our design!*/
-/*&fclk1 {
-	status = "okay";
-};*/
 
 &dcc {
 	status = "okay";
@@ -171,11 +165,11 @@
 };
 
 &gem1 {
-	status = "disabled";
+	status = "okay";
 	local-mac-address = [00 0a 35 00 02 91];
-	/*phy = <&phy1>;
+	phy = <&phy1>;
 	phy-mode = "gmii-id";
-	phy-handle = <&phy1>;*/
+	phy-handle = <&phy1>;
 	pinctrl-names = "default";
 };
 
@@ -463,19 +457,32 @@
 			bias-disable;
 		};
 	};
-
-	/*New setting for sdhci1 pinctrl, because of compatibility with older kernel*/
+	
 	pinctrl_sdhci1_default: sdhci1-default {
 		mux {
-			groups = "sdio1_4bit_0_1_grp";
+			groups = "sdio1_11_grp";
 			function = "sdio1";
 		};
 
 		conf {
-			groups = "sdio1_4bit_0_1_grp";
+			groups = "sdio1_11_grp";
 			slew-rate = <SLEW_RATE_SLOW>;
 			io-standard = <IO_STANDARD_LVCMOS18>;
 			bias-disable;
 		};
+
+		mux-cd {
+			groups = "sdio1_cd_0_grp";
+			function = "sdio1_cd";
+		};
+
+		conf-cd {
+			groups = "sdio1_cd_0_grp";
+			bias-high-impedance;
+			bias-pull-up;
+			slew-rate = <SLEW_RATE_SLOW>;
+			io-standard = <IO_STANDARD_LVCMOS18>;
+		};
+
 	};
 };

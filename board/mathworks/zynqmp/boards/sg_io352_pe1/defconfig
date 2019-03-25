@@ -1,5 +1,5 @@
 ###########################################
-# ZC706 Options
+# IO352 Options
 ###########################################
 BR2_TARGET_UBOOT_BOARD_DEFCONFIG="xilinx_zynqmp_zcu102_rev1.0"
 #BR2_TARGET_UBOOT_BOARD_DEFCONFIG="uboot_dotconfig"
