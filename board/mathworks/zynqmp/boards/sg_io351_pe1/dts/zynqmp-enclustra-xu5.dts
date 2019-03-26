@@ -164,7 +164,7 @@
 	pinctrl-0 = <&pinctrl_gem0_default>;
 };
 
-&gem1 {
+&gem3 {
 	status = "okay";
 	local-mac-address = [00 0a 35 00 02 91];
 	phy = <&phy1>;
@@ -177,7 +177,7 @@
 	status = "disabled";
 };
 
-&gem3 {
+&gem1 {
 	status = "disabled";
 };
 
@@ -439,7 +439,7 @@
 		conf-tx {
 			pins = "MIO26", "MIO27", "MIO28", "MIO29", "MIO30",
 									"MIO31";
-			bias-disable;
+			/*bias-disable;*/
 			low-power-enable;
 		};
 	};
