@@ -112,5 +112,5 @@ def platform_gen_target(args, catalog):
 def platform_update_catalog(catalog):
     catalog['platformInfo']['kernelDTSDir'] = [
                 'arch/arm64/boot/dts/xilinx',
-                'arch/arm64/boot/dts/include']
+                'include']
     return

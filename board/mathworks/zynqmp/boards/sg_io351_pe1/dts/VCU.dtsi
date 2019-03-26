@@ -1,0 +1,42 @@
+#include "PE5_XU1.h"
+
+&amba {
+	vcu_0: vcu@VCU_ENC_ADDR {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		clock-names = "pll_ref", "aclk";
+		clocks = <&misc_clk_1 &misc_clk_2>;
+		compatible = "xlnx,vcu-1.0", "xlnx,vcu";
+		interrupt-parent = <&gic>;
+		interrupts = <0 VCU_INT 4>;
+		ranges ;
+		reg = <VCU_ENC_ADDR_MSB VCU_ENC_ADDR_LSB VCU_SZ_MSB VCU_SZ_LSB VCU_DEC_ADDR_MSB VCU_DEC_ADDR_LSB VCU_SZ_MSB VCU_SZ_LSB>;
+
+		reg-names = "vcu_slcr", "logicore";
+
+		encoder: al5e@VCU_ENC_ADDR {
+			compatible = "al,al5e-1.0", "al,al5e";
+			interrupt-parent = <&gic>;
+			interrupts = <0 VCU_INT 4>;
+			reg = <VCU_ENC_ADDR_MSB VCU_ENC_ADDR_LSB VCU_SZ_MSB VCU_SZ_LSB>;
+		};
+
+		decoder: al5d@VCU_DEC_ADDR {
+			compatible = "al,al5d-1.0", "al,al5d";
+			interrupt-parent = <&gic>;
+			interrupts = <0 VCU_INT 4>;
+			reg = <VCU_DEC_ADDR_MSB VCU_DEC_ADDR_LSB VCU_SZ_MSB VCU_SZ_LSB>;
+		};
+	};
+	misc_clk_1:misc_clk_1 {
+		#clock-cells = <0x0>;
+		clock-frequency = <0x1fca055>;
+		compatible = "fixed-clock";
+	};
+
+	misc_clk_2:misc_clk_2 {
+		#clock-cells = <0x0>;
+		clock-frequency = <0x5F5E100>;
+		compatible = "fixed-clock";
+	};
+};

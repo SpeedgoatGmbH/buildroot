@@ -1,0 +1,32 @@
+#include "PE5_XU1.h"
+
+&amba {
+  v_frmbuf_wr_0: v_frmbuf_wr@FB_WR_ADDR {
+          compatible = "xlnx,axi-frmbuf-wr-v2";
+          #dma-cells = <1>;
+          interrupt-parent = <&gic>;
+          interrupts = <0 FB_WR_INT 4>;
+          reg = <FB_WR_ADDR_MSB FB_WR_ADDR_LSB FB_WR_SZ_MSB FB_WR_SZ_LSB>;
+          reset-gpios = <&gpio FB_WR_RST_GPIO 1>;
+          xlnx,dma-addr-width = <32>;
+          xlnx,vid-formats = "rgb888", "y8", "nv16", "nv12";
+  };
+  
+  v_frmbuf_rd_0: v_frmbuf_rd@FB_RD_ADDR {
+          compatible = "xlnx,axi-frmbuf-rd-v2";
+          #dma-cells = <1>;
+          interrupt-parent = <&gic>;
+          interrupts = <0 FB_RD_INT 4>;
+          reg = <FB_RD_ADDR_MSB FB_RD_ADDR_LSB FB_RD_SZ_MSB FB_RD_SZ_LSB>;
+          reset-gpios = <&gpio FB_RD_RST_GPIO 1>;
+          xlnx,dma-addr-width = <32>;
+          xlnx,vid-formats = "rgb888", "y8", "nv16", "nv12";
+  };
+  
+  
+  video_m2m {
+          compatible = "xlnx,mem2mem";
+          dmas = <&v_frmbuf_rd_0 0>, <&v_frmbuf_wr_0 0>;
+          dma-names = "tx", "rx";
+  };
+};

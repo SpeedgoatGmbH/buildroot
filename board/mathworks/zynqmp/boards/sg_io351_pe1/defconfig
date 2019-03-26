@@ -1,0 +1,9 @@
+###########################################
+# IO351 Options
+###########################################
+BR2_TARGET_UBOOT_BOARD_DEFCONFIG="xilinx_zynqmp_zcu106_revA"
+#BR2_TARGET_UBOOT_BOARD_DEFCONFIG="uboot_dotconfig"
+BR2_PACKAGE_XILINX_BOOTLOADER_UBOOT_TARGET_DIR="board/xilinx/zynqmp/zynqmp-zcu106-revA"
+#to add some specific filesystem elements for the IO351
+BR2_ROOTFS_OVERLAY="./board/mathworks/common/fs-overlay ./board/mathworks/zynqmp/fs-overlay ./board/mathworks/zynqmp/boards/sg_io351_pe1/fs-overlay"
+CONFIG_USE_BOOTARGS=y
