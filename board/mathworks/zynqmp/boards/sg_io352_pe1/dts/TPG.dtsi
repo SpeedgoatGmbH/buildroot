@@ -1,0 +1,63 @@
+#include "PE5_XU1.h"
+
+&amba {
+	xilinx_vtc:vtc@TPG_VTC_ADDR {
+		compatible = "xlnx,v-tc-6.1";
+		reg = <TPG_VTC_ADDR_MSB TPG_VTC_ADDR_LSB TPG_VTC_SZ_MSB TPG_VTC_SZ_LSB>;
+		clocks = <&video_clkwiz 0>;
+		xlnx,generator;
+	};
+
+	tpg@TPG_ADDR {
+		compatible = "xlnx,v-tpg-7.0";
+		reg = <TPG_ADDR_MSB TPG_ADDR_LSB TPG_SZ_MSB TPG_SZ_LSB>;
+		clocks = <&video_clkwiz>;
+		xlnx,vtc = <&xilinx_vtc>;
+		reset-gpios = <&gpio TPG_RST_GPIO 1>;
+		ports {
+			#address-cells = <0x1>;
+			#size-cells = <0x0>;
+
+			port@0 {
+				reg = <0x0>;
+				xlnx,video-format = <0x3>;
+				xlnx,video-width = <0x8>;
+
+				tpg_input:endpoint {
+					remote-endpoint = <&vcap_dev>;
+				};
+			};
+		};
+	};
+
+	tpg_frmbuf_wr_0: v_frmbuf_wr@TPG_FB_WR_ADDR {
+		compatible = "xlnx,axi-frmbuf-wr-v2";
+		#dma-cells = <1>;
+		interrupt-parent = <&gic>;
+		interrupts = <0 TPG_FB_WR_INT 4>;
+		reg = <TPG_FB_WR_ADDR_MSB TPG_FB_WR_ADDR_LSB TPG_FB_WR_SZ_MSB TPG_FB_WR_SZ_LSB>;
+		reset-gpios = <&gpio TPG_FB_WR_RST_GPIO 1>;
+		xlnx,dma-addr-width = <32>;
+		xlnx,vid-formats = "rgb888", "y8", "nv16", "nv12";
+	};
+
+	vcap_tpg {
+		compatible = "xlnx,video";
+		dmas = <&tpg_frmbuf_wr_0 0x0>;
+		dma-names = "port0";
+
+		ports {
+			#address-cells = <0x1>;
+			#size-cells = <0x0>;
+
+			port@0 {
+				reg = <0x0>;
+				direction = "input";
+
+				vcap_dev:endpoint {
+					remote-endpoint = <&tpg_input>;
+				};
+			};
+		};
+	};
+};

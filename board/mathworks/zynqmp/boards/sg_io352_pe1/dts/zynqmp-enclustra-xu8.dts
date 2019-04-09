@@ -232,7 +232,7 @@
 };
 
 &sdhci0 {
-	status = "disabled";/*We don't need the eMMC, and it confuses things.*/
+	status = "okay";/*We don't need the eMMC, and it confuses things.*/
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_sdhci0_default>;
 	no-1-8-v;	/* for 1.0 silicon */
@@ -427,6 +427,34 @@
 		};
 	};
 
+	/*pinctrl_sdhci0_default: sdhci0-default {
+		mux {
+			groups = "sdio0_0_grp";
+			function = "sdio0";
+		};
+
+		conf {
+			groups = "sdio0_0_grp";
+			slew-rate = <SLEW_RATE_SLOW>;
+			io-standard = <IO_STANDARD_LVCMOS18>;
+			bias-disable;
+		};
+	};*/
+
+	/*New setting for sdhci1 pinctrl, because of compatibility with older kernel*/
+	/*pinctrl_sdhci1_default: sdhci1-default {
+		mux {
+			groups = "sdio1_4bit_0_1_grp";
+			function = "sdio1";
+		};
+
+		conf {
+			groups = "sdio1_4bit_0_1_grp";
+			slew-rate = <SLEW_RATE_SLOW>;
+			io-standard = <IO_STANDARD_LVCMOS18>;
+			bias-disable;
+		};
+	};*/
 	pinctrl_sdhci0_default: sdhci0-default {
 		mux {
 			groups = "sdio0_0_grp";
@@ -440,19 +468,32 @@
 			bias-disable;
 		};
 	};
-
-	/*New setting for sdhci1 pinctrl, because of compatibility with older kernel*/
+	
 	pinctrl_sdhci1_default: sdhci1-default {
 		mux {
-			groups = "sdio1_4bit_0_1_grp";
+			groups = "sdio1_11_grp";
 			function = "sdio1";
 		};
 
 		conf {
-			groups = "sdio1_4bit_0_1_grp";
+			groups = "sdio1_11_grp";
 			slew-rate = <SLEW_RATE_SLOW>;
 			io-standard = <IO_STANDARD_LVCMOS18>;
 			bias-disable;
 		};
+
+		mux-cd {
+			groups = "sdio1_cd_0_grp";
+			function = "sdio1_cd";
+		};
+
+		conf-cd {
+			groups = "sdio1_cd_0_grp";
+			bias-high-impedance;
+			bias-pull-up;
+			slew-rate = <SLEW_RATE_SLOW>;
+			io-standard = <IO_STANDARD_LVCMOS18>;
+		};
+
 	};
 };

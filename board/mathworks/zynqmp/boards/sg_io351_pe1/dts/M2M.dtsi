@@ -9,7 +9,7 @@
           reg = <FB_WR_ADDR_MSB FB_WR_ADDR_LSB FB_WR_SZ_MSB FB_WR_SZ_LSB>;
           reset-gpios = <&gpio FB_WR_RST_GPIO 1>;
           xlnx,dma-addr-width = <32>;
-          xlnx,vid-formats = "rgb888", "y8", "nv16", "nv12";
+          xlnx,vid-formats = "rgb888", "bgr888", "nv16", "yuyv", "nv12";
   };
   
   v_frmbuf_rd_0: v_frmbuf_rd@FB_RD_ADDR {
@@ -20,7 +20,7 @@
           reg = <FB_RD_ADDR_MSB FB_RD_ADDR_LSB FB_RD_SZ_MSB FB_RD_SZ_LSB>;
           reset-gpios = <&gpio FB_RD_RST_GPIO 1>;
           xlnx,dma-addr-width = <32>;
-          xlnx,vid-formats = "rgb888", "y8", "nv16", "nv12";
+          xlnx,vid-formats = "rgb888", "bgr888", "nv16", "yuyv", "nv12";
   };
   
   

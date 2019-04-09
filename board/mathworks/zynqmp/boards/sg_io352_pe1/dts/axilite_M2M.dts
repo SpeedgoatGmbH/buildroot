@@ -1,0 +1,29 @@
+#include "base.dtsi"
+#include "M2M.dtsi"
+#include "VCU.dtsi"
+/*#include "TPG.dtsi"*/
+
+/{
+	video_clkwiz: clockwiz0{
+		compatible = "fixed-factor-clock";
+		clocks = <&clk 71>;
+		#clock-cells = <1>;
+		clock-div = <4>;
+		clock-mult = <9>;
+		clock-output-names = "clk2";
+	};
+};
+
+&core_clkwiz {
+	clock-div = <1>;
+	clock-mult = <1>;
+};
+
+
+&fclk1 {
+	status = "okay";
+};
+
+&fclk2 {
+	status = "okay";
+};

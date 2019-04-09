@@ -1,6 +1,7 @@
-config BR2_PACKAGE_ZCU_CTRL_SW
+config BR2_PACKAGE_VCU_CTRL_SW
 	bool "vcu-ctrl-sw"
 
 	help
-	  This is a Xilinx provided software stack and library for the MPSoC VCU.
+	  This is a Xilinx provided software stack and library for the
+	  MPSoC VCU.
 	  https://github.com/Xilinx/vcu-ctrl-sw

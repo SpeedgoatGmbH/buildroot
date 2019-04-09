@@ -1,0 +1,6 @@
+config BR2_PACKAGE_VCU_OMX_IL
+	bool "vcu-omx-il"
+
+	help
+	  This is a Xilinx provided software stack and library for the MPSoC VCU.
+	  https://github.com/Xilinx/vcu-omx-il

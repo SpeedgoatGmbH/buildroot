@@ -2,14 +2,14 @@
     <default>
         <app name="default">
         </app>
-		<fsbl file="fsbl.elf"/>
-        <pmufw file="pmufw.elf"/>		
-        <!--				
-		<fsbl dir="handoff"/>
-        <pmufw file="pmufw.bin"/>
-		-->
+        <fsbl file="fsbl.elf"/>
+        <pmufw file="pmufw.elf"/>
     </default>
     <image name="zynqmpec">
+        <app name="axilite_M2M">
+            <dts file="axilite_M2M.dts"/>
+            <bit file="axilite_M2M.bit"/>
+        </app>
         <app name="axilite">
             <dts file="axilite.dts"/>
             <bit file="axilite.bit"/>

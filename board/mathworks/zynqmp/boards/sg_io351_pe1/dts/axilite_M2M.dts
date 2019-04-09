@@ -1,7 +1,7 @@
 #include "base.dtsi"
 #include "M2M.dtsi"
 #include "VCU.dtsi"
-#include "TPG.dtsi"
+/*#include "TPG.dtsi"*/
 
 /{
 	video_clkwiz: clockwiz0{

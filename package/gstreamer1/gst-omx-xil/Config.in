@@ -1,0 +1,11 @@
+config BR2_PACKAGE_GST_OMX_XIL
+	bool "gst-omx"
+	depends on BR2_PACKAGE_VCU_OMX_IL
+	select BR2_PACKAGE_VCU_OMX_IL
+	help
+	  GStreamer plug-in to use OpenMAX API.
+
+	  http://cgit.freedesktop.org/gstreamer/gst-omx
+
+comment "gst-omx requires a OpenMAX implementation"
+	depends on !BR2_PACKAGE_VCU_OMX_IL
